@@ -3,9 +3,18 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+        	<link href="{{ asset('css/style.css') }}" rel="stylesheet" />
+        {% endblock %}
     </head>
     <body>
+    	<nav>
+    		<a href="{{ path('main') }}">Главная</a>
+    		<a href="{{ path('category', {'category_name': 'designing'}) }}">Проектирование</a>
+    		<a href="{{ path('category', {'category_name': 'visualization'}) }}">Визуализация</a>
+    		<a href="{{ path('category', {'category_name': 'development'}) }}">Разработка</a>
+    		<a href="{{ path('category', {'category_name': 'promotion'}) }}">Продвижение</a>
+    	</nav>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
