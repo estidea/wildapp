@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -22,9 +24,16 @@ class MainController extends AbstractController
      */
     public function category($category_name)
     {
+    	$category = $this->getDoctrine()
+    		->getRepository(Category::class)
+    		->findOneBy(['slug' => $category_name]);
+
+    	$articles = $category->getArticles(); 
+
     	// Shows all courses of one category
         return $this->render('main/category.html.twig', [
-            'category' => $category_name,
+            'category' => $category,
+            'articles' => $articles
         ]);
     }
 
@@ -33,6 +42,7 @@ class MainController extends AbstractController
      */
     public function article($category_name, $slug)
     {
+
     	// Shows all courses of one category
         return $this->render('main/article.html.twig', [
             'category' => $category_name,

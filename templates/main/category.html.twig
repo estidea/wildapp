@@ -3,7 +3,13 @@
 {% block title %}Hello Nick!{% endblock %}
 
 {% block body %}
-<div id="{{category}}">
-	<h1>{{category}}</h1>
+<div id="{{category.slug}}">
+	<h1>{{category.name}}</h1>
+	<h2>{{category.description}}</h2>
+	{% for article in articles %}
+		<h3>{{article.title}}</h3>
+		<p>{{article.announce}}</p>
+		<br>
+	{% endfor %}
 </div>
 {% endblock %}
